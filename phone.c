@@ -1,18 +1,24 @@
 #include "phone.h"
 
 void add(phone* p, char* name, char* phonenumber, int size) {
-  int len_name = strlen(name);
-  int len_number = strlen(phonenumber);
-  p[size - 1].name = malloc(len_name * sizeof(char));
-  p[size - 1].phonenumber = malloc(len_number * sizeof(char));
-  strcpy(p[size - 1].name, name);
-  strcpy(p[size - 1].phonenumber, phonenumber);
+  char* name_aux = malloc(STRING * sizeof(char));
+  char* phonenumber_aux = malloc(STRING * sizeof(char));
+
+  strcpy(name_aux, name);
+  strcpy(phonenumber_aux, phonenumber);
+
+  p[size - 1].name = name_aux;
+  p[size - 1].phonenumber = phonenumber_aux;
 }
 
 void print(phone* p, int size) {
   for (int i = 0; i < size; i++) {
-    printf("Name: %s\n", p[i].name);
-    printf("Phone number: %s\n", p[i].phonenumber);
+    char name_aux[STRING];
+    char phonenumber_aux[STRING];
+    strcpy(name_aux, p[i].name);
+    strcpy(phonenumber_aux, p[i].phonenumber);
+    printf("Name: %s\n", name_aux);
+    printf("Phone number: %s\n", phonenumber_aux);
     printf("\n");
   }
 }
@@ -32,10 +38,33 @@ void show(phone* p, char* name, int size) {
 }
 
 int verify(phone* p, char* name, int size) {
-  for (int i = 0; i < size - 1; i++) {
+  for (int i = 0; i < size; i++) {
     if (strcmp(name, p[i].name) == 0) {
       return 0;
     }
   }
   return 1;
+}
+
+void delete(phone** p, char* name, int size) {
+  int i;
+  int j = 0;
+  phone* p_aux = malloc((size - 1) * sizeof(phone));
+  for (i = 0; i < size; i++) {
+    if (strcmp((*p)[i].name, name) != 0) {
+      char* name_aux = malloc(STRING * sizeof(char));
+      char* phonenumber_aux = malloc(STRING * sizeof(char));
+      strcpy(name_aux, (*p)[i].name);
+      strcpy(phonenumber_aux, (*p)[i].phonenumber);
+      p_aux[j].name = name_aux;
+      p_aux[j].phonenumber = phonenumber_aux;
+      j++;
+    }
+  }
+  for (i = 0; i < size; i++) {
+    free((*p)[i].name);
+    free((*p)[i].phonenumber);
+  }
+  free(*p);
+  *p = p_aux;
 }

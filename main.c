@@ -1,5 +1,5 @@
 #include "phone.h"
-#define STRING 100
+
 int main(void) {
   int ok;
   int opp = 0;
@@ -26,7 +26,7 @@ int main(void) {
         continue;
       }
       p = realloc(p, (++size) * sizeof(phone));
-      int verif = verify(p, name, size);
+      int verif = verify(p, name, size - 1);
       if (verif == 1)
         add(p, name, phonenumber, size);
       else {
@@ -55,6 +55,12 @@ int main(void) {
         printf("Contacts not open\n");
         continue;
       }
+
+      if (size == 0) {
+        printf("No contacts\n");
+        continue;
+      }
+
       ok = 1;
       print(p, size);
     }
@@ -68,6 +74,24 @@ int main(void) {
         continue;
       }
       show(p, name, size);
+    }
+    if (strcmp(command, "DELETE") == 0) {
+      ok = 1;
+      char name[STRING];
+      scanf("%s", name);
+      if (opp == 0) {
+        printf("Contacts not open\n");
+        continue;
+      }
+      int verif = verify(p, name, size);
+      if (verif == 1) {
+        printf("Contact not found\n");
+        continue;
+      } else {
+        delete (&p, name, size);
+        printf("Contact %s deleted\n", name);
+        size--;
+      }
     }
     if (ok == 0) {
       printf("Invalid command\n");
