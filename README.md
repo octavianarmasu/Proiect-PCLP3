@@ -5,6 +5,7 @@ Phonebook in C
   Am implentat o agenda telefonica in C folosind un vector de structuri ce se realloca la fiecare adaugare a unui nou contact.
 
   Operatiile care fi efectuate:
+  
     -> OPEN_CONTACTS: data la inceput pentru a adauga contacte in lista. Orice comanda ce va fi data inainte de aceasta va afisa un mesaj de eroare.
     -> CLOSE_CONTACTS: se da la final de prgram pentru a elibera toate resursele folosite
     -> ADD <name> <phone_number>: adauga in lista noul contact cu datele primite. Daca exista deja un contact cu acel nume se va afisa un mesaj de eroare
