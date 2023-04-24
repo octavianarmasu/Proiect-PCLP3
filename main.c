@@ -40,6 +40,11 @@ int main(void) {
         continue;
       }
       ok = 1;
+      for (int i = 0; i < size; i++) {
+        free(p[i].name);
+        free(p[i].phonenumber);
+      }
+      free(p);
       break;
     }
     if (strcmp(command, "SIZE") == 0) {
@@ -73,6 +78,10 @@ int main(void) {
         printf("Contacts not open\n");
         continue;
       }
+      if (size == 0) {
+        printf("No contacts\n");
+        continue;
+      }
       show(p, name, size);
     }
     if (strcmp(command, "DELETE") == 0) {
@@ -92,6 +101,20 @@ int main(void) {
         printf("Contact %s deleted\n", name);
         size--;
       }
+    }
+    if (strcmp(command, "SORT") == 0) {
+      if (opp == 0) {
+        printf("Contacts not open\n");
+        continue;
+      }
+      ok = 1;
+
+      if (size == 0) {
+        printf("No contacts\n");
+        continue;
+      }
+
+      sort(p, size);
     }
     if (ok == 0) {
       printf("Invalid command\n");

@@ -68,3 +68,20 @@ void delete(phone** p, char* name, int size) {
   free(*p);
   *p = p_aux;
 }
+
+void sort(phone* p, int size) {
+  char name_aux[STRING];
+  char phonenumber_aux[STRING];
+  for (int i = 0; i < size - 1; i++) {
+    for (int j = i + 1; j < size; j++) {
+      if (strcmp(p[i].name, p[j].name) > 0) {
+        strcpy(name_aux, p[i].name);
+        strcpy(phonenumber_aux, p[i].phonenumber);
+        strcpy(p[i].name, p[j].name);
+        strcpy(p[i].phonenumber, p[j].phonenumber);
+        strcpy(p[j].name, name_aux);
+        strcpy(p[j].phonenumber, phonenumber_aux);
+      }
+    }
+  }
+}
