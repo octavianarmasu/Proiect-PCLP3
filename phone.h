@@ -12,3 +12,6 @@ struct phone {
 };
 
 void add(phone* p, char* name, char* phonenumber, int size);
+void print(phone* p, int size);
+void show(phone* p, char* name, int size);
+int verify(phone* p, char* name, int size);
