@@ -1,6 +1,6 @@
 #Copyright Armasu Octavian 315CA
 # Proiect-PCLP3
-Phonebook in C
+## Phonebook in C
 
   Am implentat o agenda telefonica in C folosind un vector de structuri ce se realloca la fiecare adaugare a unui nou contact.
 
